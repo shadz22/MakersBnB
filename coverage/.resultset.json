@@ -1,10 +1,15 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/DavidPapamichael/Coding/Makers/week_6/MakersBnB/spec/features/home_page_spec.rb": [
-
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/features/home_page_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
       ],
-      "/Users/DavidPapamichael/Coding/Makers/week_6/MakersBnB/spec/units/database_connection_spec.rb": [
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/units/database_connection_spec.rb": [
         1,
         null,
         1,
@@ -22,13 +27,13 @@
         null,
         null
       ],
-      "/Users/DavidPapamichael/Coding/Makers/week_6/MakersBnB/spec/units/listing_spec.rb": [
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/units/listing_spec.rb": [
 
       ],
-      "/Users/DavidPapamichael/Coding/Makers/week_6/MakersBnB/spec/units/user_spec.rb": [
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/units/user_spec.rb": [
 
       ]
     },
-    "timestamp": 1580139033
+    "timestamp": 1580139599
   }
 }
