@@ -16,10 +16,12 @@ class BnbApp < Sinatra::Base
   end
 
   post '/users' do
+    session[:name] = params[:name]
     redirect '/users'
   end
 
   get '/users' do
+    @name = session[:name]
     erb :'users/index'
   end
 
