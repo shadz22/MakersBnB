@@ -8,7 +8,7 @@ class BnbApp < Sinatra::Base
   enable :sessions 
 
   get '/' do
-    "Welcome to Makers BnB"
+    erb :index
   end
 
   run! if app_file == $0
