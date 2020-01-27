@@ -8,16 +8,22 @@ class BnbApp < Sinatra::Base
   enable :sessions
   
   get '/listings/new' do
-    erb(:new)
+    erb :'listings/new'
   end
 
   post '/listings' do
-    Listing.create(name: params[:create_name], description: params[:description], price params[:set_price])
+    # Listing.create(name: params[:create_name], description: params[:description], price: params[:set_price])
+    session[:name] = params[:create_name]
+    session[:description] = params[:description]
+    session[:price] = params[:set_price]
     redirect '/listings'
   end
 
   get '/listings' do
-    erb(:view)
+    @name = session[:name]
+    @description = session[:description]
+    @price = session[:price]
+    erb :'listings/display'
   end
 
 
