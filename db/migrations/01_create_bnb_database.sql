@@ -1,0 +1,1 @@
+CREATE DATABASE "bnb_app_test"

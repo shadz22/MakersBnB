@@ -1,0 +1,1 @@
+CREATE TABLE listings(id SERIAL PRIMARY KEY, name VARCHAR(20), description VARCHAR(200), price INTEGER, user_id INTEGER REFERENCES users(id));
