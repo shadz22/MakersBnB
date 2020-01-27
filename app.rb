@@ -11,6 +11,18 @@ class BnbApp < Sinatra::Base
     erb :index
   end
 
+  get '/users/new' do
+    erb :'users/new'
+  end
+
+  post '/users' do
+    redirect '/users'
+  end
+
+  get '/users' do
+    erb :'users/index'
+  end
+
   run! if app_file == $0
 end
 
