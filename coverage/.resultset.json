@@ -1,9 +1,35 @@
 {
   "RSpec": {
     "coverage": {
+
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/features/home_page_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/features/user_account_page_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/features/user_sign_up_spec.rb": [
+        1,
+
       "/Users/benauld/Projects/MakersBnB/spec/features/features/create_listing_spec.rb": [
         null,
         null,
+
         1,
         1,
         1,
@@ -13,12 +39,19 @@
         1,
         1,
         null,
+
+        null,
+        null
+      ],
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/units/database_connection_spec.rb": [
+
         null
       ],
       "/Users/benauld/Projects/MakersBnB/spec/features/home_page_spec.rb": [
 
       ],
       "/Users/benauld/Projects/MakersBnB/spec/units/database_connection_spec.rb": [
+
         1,
         null,
         1,
@@ -36,6 +69,16 @@
         null,
         null
       ],
+
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/units/listing_spec.rb": [
+
+      ],
+      "/Users/shadikhazaei/Documents/Projects/MakersBnB/spec/units/user_spec.rb": [
+
+      ]
+    },
+    "timestamp": 1580149197
+
       "/Users/benauld/Projects/MakersBnB/spec/units/listing_spec.rb": [
 
       ],
@@ -44,5 +87,7 @@
       ]
     },
     "timestamp": 1580149200
+
+  
   }
 }
