@@ -1,10 +1,34 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/DavidPapamichael/Coding/Makers/week_6/MakersBnB/spec/features/home_page_spec.rb": [
+      "/Users/benauld/Projects/MakersBnB/spec/features/features/create_listing_spec.rb": [
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/Users/benauld/Projects/MakersBnB/spec/features/features/testing_infrastructure_spec.rb": [
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/benauld/Projects/MakersBnB/spec/features/home_page_spec.rb": [
 
       ],
-      "/Users/DavidPapamichael/Coding/Makers/week_6/MakersBnB/spec/units/database_connection_spec.rb": [
+      "/Users/benauld/Projects/MakersBnB/spec/units/database_connection_spec.rb": [
         1,
         null,
         1,
@@ -22,13 +46,13 @@
         null,
         null
       ],
-      "/Users/DavidPapamichael/Coding/Makers/week_6/MakersBnB/spec/units/listing_spec.rb": [
+      "/Users/benauld/Projects/MakersBnB/spec/units/listing_spec.rb": [
 
       ],
-      "/Users/DavidPapamichael/Coding/Makers/week_6/MakersBnB/spec/units/user_spec.rb": [
+      "/Users/benauld/Projects/MakersBnB/spec/units/user_spec.rb": [
 
       ]
     },
-    "timestamp": 1580139033
+    "timestamp": 1580140344
   }
 }
