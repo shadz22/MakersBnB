@@ -1,7 +1,7 @@
 require 'sinatra/base'
-require 'sinatra/flash'
 require './lib/user'
-require './listing'
+require './lib/listing'
+require './database_connection_setup'
 
 class BnbApp < Sinatra::Base
 
