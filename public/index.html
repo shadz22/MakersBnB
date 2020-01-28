@@ -1,23 +1,109 @@
-<!DOCTYPE html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Date Picker</title>
-    <link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-  </head>
-  <body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Select a Date Range</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
 
-    <input type="text" id="datepicker-to" />
-    <input type="text" id="datepicker-from" />
-    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="jquery-ui.min.js"></script>
+var unavailableDates = ["1-2-2020", "2-2-2020", "3-2-2020", "4-2-2020"]
+function unavailable(date) {
+    dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+    console.log(dmy)
+    if (jQuery.inArray(dmy, unavailableDates) == -1) {
+        return [true, ""];
+    } else {
+        return [false, "", "Unavailable"];
+    }
+}
+$(function() {
+    $( "#from" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        beforeShowDay: unavailable,
+        numberOfMonths: 1,
+        dateFormat: 'dd/mm/yy',
+        onClose: function( selectedDate ) {
+            $( "#to" ).datepicker( "option", "minDate", selectedDate );
+        }
+    });
+    $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        beforeShowDay: unavailable,
+        numberOfMonths: 1,
+        dateFormat: 'dd/mm/yy',
+        onClose: function( selectedDate ) {
+            $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+        }
+    });
+});
 
-    <script>
-      $("#datepicker-to").datepicker();
-      $("#datepicker-from").datepicker();
-    </script>
-  </body>
+  //   var bookedDates = ["2020-02-01"]
+  //   function unavailable(date) {
+  //     ymd = date.getFullYear() + "-" + (date.getMonth() +1) + "-" + date.getDate();
+  //     if ($.inArray(ymd, bookedDates) === -1 ) {
+  //       return [true, ""];
+  //     } else {
+  //       return [false, "", "Unavailable"];
+  //     }
+  //   }
+  //   console.log(unavailable)
+  //   // $(function() {
+  //   //   $('#to').datepicker({
+  //   //     dateFormat: "yy-mm-dd",
+  //   //     beforeShowDay: unavailable
+  //   //   })
+  //   // })
+  // $( function() {
+  //   var dateFormat = "yy-mm-dd",
+  //     from = $( "#from" )
+  //       .datepicker({
+  //         defaultDate: "+1w",
+  //         changeMonth: true,
+  //         numberOfMonths: 3
+  //       })
+  //       .on( "change", function() {
+  //         to.datepicker( "option", "minDate", getDate( this ) );
+  //       }),
+  //     to = $( "#to" ).datepicker({
+  //       beforeShowDay: unavailable,
+  //       defaultDate: "+1w",
+  //       changeMonth: true,
+  //       numberOfMonths: 3,
+
+  //     })
+  //     .on( "change", function() {
+  //       from.datepicker( "option", "maxDate", getDate( this ) );
+  //     });
+ 
+  //   function getDate( element ) {
+  //     var date;
+  //     try {
+  //       date = $.datepicker.parseDate( dateFormat, element.value );
+  //     } catch( error ) {
+  //       date = null;
+  //     }
+ 
+  //     return date;
+  //   }
+  // } );
+
+  </script>
+
+
+</head>
+<body>
+ 
+<label for="from">From</label>
+<input type="text" id="from" name="from">
+<label for="to">to</label>
+<input type="text" id="to" name="to">
+ 
+ 
+</body>
 </html>
