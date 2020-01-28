@@ -11,6 +11,11 @@ describe Listing do
 
   describe '.all' do
     it { expect(subject.all).to be_a Array }
+
+    it 'wraps database data in Listing object and assigns instance variables' do
+      Listing.create(name: 'listing name', description: 'Listing description', price: 100, owner_id: 1)
+      expect(subject.all.first.name).to eq 'listing name'
+    end
   end
 
 

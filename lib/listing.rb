@@ -2,11 +2,22 @@ require 'pg'
 require './lib/database_connection'
 
 class Listing
+
+  attr_reader :id, :name, :description, :price, :owner_id
+
+  def initialize(database_row)
+    @id = database_row['id']
+    @name = database_row['name']
+    @description = database_row['description']
+    @price = database_row['price']
+    @owner_id = database_row['owner_id']
+  end
+
   def self.all
     DatabaseConnection.setup('bnb_app_test')
     query = "SELECT * FROM listings"
     result = DatabaseConnection.query(query)
-    result.map { |listing| listing['name']}
+    result.map { |listing| Listing.new(listing) }
   end
 
   def self.create(name:, description:, price:, owner_id:)
