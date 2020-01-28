@@ -3,7 +3,7 @@ require './lib/database_connection'
 
 class Listing
 
-  attr_reader :id, :name, :description, :price, :owner_id
+  attr_reader :id, :name, :description, :price, :owner_id, :start_date, :end_date
 
   def initialize(database_row)
     @id = database_row['id']
@@ -11,6 +11,8 @@ class Listing
     @description = database_row['description']
     @price = database_row['price']
     @owner_id = database_row['owner_id']
+    @start_date = database_row["start_date"]
+    @end_date = database_row["end_date"]
   end
 
   def self.all
@@ -19,8 +21,8 @@ class Listing
     result.map { |listing| Listing.new(listing) }
   end
 
-  def self.create(name:, description:, price:, owner_id:)
-    DatabaseConnection.query("INSERT INTO listings (name, description, price, owner_id) VALUES ('#{name}', '#{description}', '#{price}', '#{owner_id}') RETURNING id, name, description, price, owner_id")
+  def self.create(name:, description:, price:, owner_id:, start_date:, end_date:)
+    DatabaseConnection.query("INSERT INTO listings (name, description, price, owner_id, start_date, end_date) VALUES ('#{name}', '#{description}', '#{price}', '#{owner_id}', '#{start_date}', '#{end_date}') RETURNING id, name, description, price, owner_id, start_date, end_date")
   end
 
 end
