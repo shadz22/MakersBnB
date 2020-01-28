@@ -17,4 +17,10 @@ class User
     result.map { |user| self.new( user["name"], user["email"], user["id"]) }
   end
 
+  def self.create(name, email)
+    DatabaseConnection.setup('bnb_app_test')
+    query = ("INSERT INTO users (name, email) VALUES('#{name}', '#{email}')")
+    result = DatabaseConnection.query(query)
+  end
+
 end

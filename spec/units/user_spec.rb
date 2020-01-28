@@ -12,11 +12,13 @@ describe User do
     end
   end
 
-
-  # describe '.create' do
-  #   it 'creates a new user' do
-  #     User.create("David", "david@gmail.com")
-  #     expect(User.all)
+  describe '.create' do
+    it 'creates a new user' do
+      User.create("David", "david@gmail.com")
+      expect(User.all[0].name).to include("David")
+      expect(User.all[0].email).to include("david@gmail.com")
+    end
+  end
 
 end
 
