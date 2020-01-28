@@ -5,9 +5,7 @@ require 'pg'
 describe Listing do
   let(:subject) { Listing }
   
-  before(:each) do
-    # DatabaseConnection.setup('bnb_app_test')
-  end
+ 
   let(:user) { User.create(name: 'user1', email: 'email', password: 'password') }
 
   describe '.all' do
