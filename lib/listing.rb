@@ -14,18 +14,13 @@ class Listing
   end
 
   def self.all
-    DatabaseConnection.setup(environment)
     query = "SELECT * FROM listings"
     result = DatabaseConnection.query(query)
     result.map { |listing| Listing.new(listing) }
   end
 
   def self.create(name:, description:, price:, owner_id:)
-    DatabaseConnection.setup(environment)
     DatabaseConnection.query("INSERT INTO listings (name, description, price, owner_id) VALUES ('#{name}', '#{description}', '#{price}', '#{owner_id}') RETURNING id, name, description, price, owner_id")
   end
 
-  def self.environment
-    ENV['ENVIRONMENT'] == 'test' ? 'bnb_app_test' : 'bnb_app'
-  end
 end

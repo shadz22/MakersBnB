@@ -18,9 +18,6 @@ class BnbApp < Sinatra::Base
 
   get '/listings' do
     @listings = Listing.all
-    # @name = session[:name]
-    # @description = session[:description]
-    # @price = session[:price]
     erb :'listings/index'
   end
 
