@@ -1,5 +1,6 @@
 require 'pg'
 require 'bcrypt'
+require './lib/database_connection'
 
 class User
 
