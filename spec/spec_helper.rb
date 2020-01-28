@@ -2,6 +2,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require_relative './units/setup_test_database'
+require './database_connection_setup'
 
 ENV['ENVIRONMENT'] = 'test'
 
