@@ -1,9 +1,13 @@
 <!DOCTYPE html>
   <head>
-    <title>Listings</title>
+    <title>Display Listing</title>
     <link type='text/css' rel='stylesheet' href='/css/style.css'>
   </head>
   <body>
-
+    <% @listings.each do |listing| %>
+      <%= listing.name %>
+      <%= listing.description %>
+      <%= listing.price %>
+      <% end %>
   </body>
 </html>
