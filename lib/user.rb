@@ -4,26 +4,26 @@ require './lib/database_connection'
 
 class User
 
-  attr_reader :name, :email, :id
+  attr_reader :name, :email, :id, :password
 
-  def initialize(name, email, id)
-    @name = name
-    @email = email
-    @id = id
+  def initialize(database_row)
+    @name = database_row['name']
+    @email = database_row['email']
+    @id = database_row['id']
+    @password = database_row['password']
   end
 
   def self.all
-    DatabaseConnection.setup('bnb_app_test')
     query = ("SELECT * FROM users ")
     result = DatabaseConnection.query(query)
-    result.map { |user| self.new( user["name"], user["email"], user["id"]) }
+    result.map { |user| user }
   end
 
-  def self.create(name, email, password)
-    DatabaseConnection.setup('bnb_app_test')
+  def self.create(name:, email:, password:)
     encrypted_password = BCrypt::Password.create(password)
-    query = ("INSERT INTO users (name, email, password) VALUES('#{name}', '#{email}', '#{encrypted_password}')")
+    query = ("INSERT INTO users (name, email, password) VALUES('#{name}', '#{email}', '#{encrypted_password}') RETURNING id, name, email, password")
     result = DatabaseConnection.query(query)
+    User.new(result[0])
   end
 
 end

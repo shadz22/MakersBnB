@@ -12,7 +12,7 @@ class BnbApp < Sinatra::Base
   end
 
   post '/listings' do
-    Listing.create(name: params[:create_name], description: params[:description], price: params[:set_price], owner_id: 1)
+    Listing.create(name: params[:create_name], description: params[:description], price: params[:set_price], owner_id: session[:owner_id])
     redirect '/listings'
   end
 
@@ -31,9 +31,9 @@ class BnbApp < Sinatra::Base
   end
 
   post '/users' do
-    # session[:name] = params[:name]
-    user = User.create(params[:name], params[:email], params[:password])
-    session[:name] = params[:name]
+    user = User.create(name: params[:name], email: params[:email], password: params[:password])
+    session[:name] = user.name
+    session[:owner_id] = user.id
     redirect '/users'
   end
 
