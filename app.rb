@@ -13,7 +13,7 @@ class BnbApp < Sinatra::Base
 
   post '/listings' do
     Listing.create(name: params[:create_name], description: params[:description], price: params[:set_price], owner_id: session[:owner_id], start_date: params[:start_date], end_date: params[:end_date] )
-    # redirect '/listings'
+    redirect '/'
   end
 
   get '/listings' do
@@ -23,7 +23,9 @@ class BnbApp < Sinatra::Base
 
 
   get '/' do
-    erb :index
+    # erb :index
+    @listings = Listing.all
+    erb :user_index
   end
 
   get '/users/new' do
