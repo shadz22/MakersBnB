@@ -8,17 +8,17 @@ class BnbApp < Sinatra::Base
   enable :sessions
   
   get '/listings/new' do
-    erb :'listings/new'
+    # erb :'listings/new'
   end
 
   post '/listings' do
     Listing.create(name: params[:create_name], description: params[:description], price: params[:set_price], owner_id: session[:owner_id], start_date: params[:start_date], end_date: params[:end_date] )
-    redirect '/listings'
+    # redirect '/listings'
   end
 
   get '/listings' do
     @listings = Listing.all
-    erb :'listings/index'
+    # erb :'listings/index'
   end
 
 
@@ -27,19 +27,19 @@ class BnbApp < Sinatra::Base
   end
 
   get '/users/new' do
-    erb :'users/new'
+    # erb :'users/new'
   end
 
   post '/users' do
     user = User.create(name: params[:name], email: params[:email], password: params[:password])
     session[:name] = user.name
     session[:owner_id] = user.id
-    redirect '/users'
+    redirect '/'
   end
 
   get '/users' do
     @name = session[:name]
-    erb :'users/index'
+
   end
 
   run! if app_file == $0
