@@ -23,7 +23,7 @@ class BnbApp < Sinatra::Base
 
 
   get '/' do
-    erb :index
+    erb :booking_index
   end
 
   get '/users/new' do
