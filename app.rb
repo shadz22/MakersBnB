@@ -28,7 +28,7 @@ class BnbApp < Sinatra::Base
   get '/' do
     # erb :index
     @listings = Listing.all
-    erb :user_index
+    erb :booking_index
   end
 
   get '/users/new' do
