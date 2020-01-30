@@ -14,9 +14,11 @@
     <div id="create-listing-form"></div>
     <div id="show-listings">
       <% @listings.each do |listing| %>
-        <a href="goggle.com"><%= listing.name %></a>
+        <input type='submit' value='<%= listing.name %>' class='listing-btn' id='<%= listing.id %>'>
       <% end %>
     </div>
+
+    <div id='listing-details'><%= @current_listing.price %></div>
 
 
   

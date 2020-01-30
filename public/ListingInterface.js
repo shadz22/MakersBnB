@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  var currentListing;
 
   $("#homepage-create-listing-btn").on("click", function() {
     createListingForm()
@@ -16,5 +17,23 @@ $(document).ready(function(){
     </form>'
      )
    }
+
+   
+   $('.listing-btn').on('click', function() {
+      $.ajax({    //create an ajax request to display.php
+        type: "GET",
+        url: `/listings/${this.id}`,             
+        dataType: "json",   //expect html to be returned                
+        success: function(response){                    
+            // $("#responsecontainer").html(response); 
+            // alert(response);
+            console.log(response)
+        }
+      });
+   })
+
+
+   
+  
 
 })

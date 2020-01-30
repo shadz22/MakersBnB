@@ -21,10 +21,16 @@ class BnbApp < Sinatra::Base
     # erb :'listings/index'
   end
 
+  get '/listings/:id' do
+    @listings = Listing.all
+    @listings.each { |listing| session[:listing] = listing if listing.id === params[:id] }
+    redirect '/'
+  end
 
   get '/' do
     # erb :index
     @listings = Listing.all
+    @current_listing = session[:listing]
     erb :user_index
   end
 
