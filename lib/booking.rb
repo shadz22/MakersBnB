@@ -1,5 +1,6 @@
 require 'pg'
 require './lib/database_connection'
+require 'date'
 
 class Booking
   def initialize(database_row)
@@ -17,9 +18,18 @@ class Booking
     result.map { |booking| Booking.new(booking) }
   end
 
+  def self.listings(listing_id:)
+    p "am I failing before here?"
+    listing_id = listing_id.to_i
+    query = "SELECT * FROM bookings WHERE listing_id = '#{listing_id}'"
+    result = DatabaseConnection.query(query)
+    result.map { |booking| Booking.new(booking) }
+  end
+
   def self.create(user_id:, listing_id:, start_date:, end_date:)
-   p user_id = user_id.to_i
-    p listing_id = listing_id.to_i
+    user_id = user_id.to_i
+    listing_id = listing_id.to_i
     DatabaseConnection.query("INSERT INTO bookings (user_id, listing_id, start_date, end_date) VALUES ('#{user_id}', '#{listing_id}', '#{start_date}', '#{end_date}') RETURNING id, user_id, listing_id, start_date, end_date, confirmed")
   end
+ 
 end

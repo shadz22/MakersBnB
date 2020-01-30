@@ -40,9 +40,6 @@ $(document).ready(function() {
       }
       
       $(function() {
-
-        var bookedDates = []
-
           $( "#start_date" ).datepicker({
               minDate: "2020-01-05", 
               maxDate: "2020-04-05",
@@ -54,12 +51,6 @@ $(document).ready(function() {
               onClose: function( selectedDate ) {
                 $( "#end_date" ).datepicker( "option", "minDate", selectedDate );
               }
-          });
-
-          $("#start_date").on("change",function(){
-              var selectedFrom = $(this).val();
-              // bookedDates.pop(selectedFrom)
-              console.log(selectedFrom)
           });
 
           $( "#end_date" ).datepicker({
@@ -74,16 +65,6 @@ $(document).ready(function() {
                   $( "#start_date" ).datepicker( "option", "maxDate", selectedDate );
               }
           });
-
-          $("#end_date").on("change",function(){
-              var selectedTo = $(this).val();
-              // bookedDates.pop(selectedTo)
-              console.log(selectedTo)
-          });
-
-        $("#dates").on("click", function() {
-        })
-
       });
 
   }
