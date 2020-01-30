@@ -29,7 +29,7 @@ $(document).ready(function(){
   });
 
   $('#show-listings').on('click', '#listing-links', function() {
-    $('#listing-details').empty().append(listings[$(this).val()].price)
+    showListingDetails($(this).val())
   })
 
   function showListings(listings) {
@@ -40,6 +40,16 @@ $(document).ready(function(){
       listingLink.value = listings[key].id
       $('#show-listings').append(listingLink)
     }
+  }
+
+  function showListingDetails(listing_id) {
+   $('#listing-details').empty().append(
+     `Name: ${listings[listing_id].name}<br>
+     price: ${listings[listing_id].price}<br>
+     Description: ${listings[listing_id].description}<br>
+     Start Date: ${listings[listing_id].start_date}<br>
+     End Date: ${listings[listing_id].end_date}`
+     )
   }
 
 })
