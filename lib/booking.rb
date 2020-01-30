@@ -1,6 +1,7 @@
 require 'pg'
 require './lib/database_connection'
-require 'date'
+require_relative 'date_handler'
+
 
 class Booking
   def initialize(database_row)
@@ -19,11 +20,11 @@ class Booking
   end
 
   def self.listings(listing_id:)
-    p "am I failing before here?"
     listing_id = listing_id.to_i
     query = "SELECT * FROM bookings WHERE listing_id = '#{listing_id}'"
     result = DatabaseConnection.query(query)
-    result.map { |booking| Booking.new(booking) }
+    array = result.map { |booking| DateHandler.convert(booking['start_date'], booking['end_date']) }
+    p array.flatten
   end
 
   def self.create(user_id:, listing_id:, start_date:, end_date:)
