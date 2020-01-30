@@ -7,6 +7,16 @@ $(document).ready(function() {
     createBooking()
   })
 
+
+  $('#view-booking-btn').on('click', function() {
+    
+    query = `id=${listing.id}`
+    console.log(query)
+    $.get(`/bookings/dates`, query, function(data) {
+      console.log(data)
+    })
+  });
+
   function displayListing() {
   $("#create-listing-display").html(
     '<h1>Listing Name:' + listing.name + '</h1>\
@@ -27,8 +37,6 @@ $(document).ready(function() {
       <input type="hidden" name="listing_id" value=' + listing.id+ '>\
       <input type=submit id="dates" value="Create Dates"></form>'
     )
-      var startDate = listing.start_date
-      var endDate = listing.end_date
       var unavailableDates = ["2020-2-1", "2020-2-2", "2020-2-3", "2020-2-4", "2020-2-5"]
       function unavailable(date) {
         ymd = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
@@ -39,35 +47,38 @@ $(document).ready(function() {
           }
       }
       
-      $(function() {
-          $( "#start_date" ).datepicker({
-              minDate: "2020-01-05", 
-              maxDate: "2020-04-05",
-              defaultDate: "+1w",
-              changeMonth: true,
-              beforeShowDay: unavailable,
-              numberOfMonths: 1,
-              dateFormat: 'yy-mm-dd',
-              onClose: function( selectedDate ) {
-                $( "#end_date" ).datepicker( "option", "minDate", selectedDate );
-              }
-          });
+  $(function() {
 
-          $( "#end_date" ).datepicker({
-              minDate: "2020-01-05", 
-              maxDate: "2020-04-05",
-              defaultDate: "+1w",
-              changeMonth: true,
-              beforeShowDay: unavailable,
-              numberOfMonths: 1,
-              dateFormat: 'yy-mm-dd',
-              onClose: function( selectedDate ) {
-                  $( "#start_date" ).datepicker( "option", "maxDate", selectedDate );
-              }
-          });
+    $( "#start_date" ).datepicker({
+      minDate: "2020-01-05", 
+      maxDate: "2020-04-05",
+      defaultDate: "+1w",
+      changeMonth: true,
+      beforeShowDay: unavailable,
+      numberOfMonths: 1,
+      dateFormat: 'yy-mm-dd',
+      onClose: function( selectedDate ) {
+        $( "#end_date" ).datepicker( "option", "minDate", selectedDate );
+        }
+    });
+
+    $( "#end_date" ).datepicker({
+      minDate: "2020-01-05", 
+      maxDate: "2020-04-05",
+      defaultDate: "+1w",
+      changeMonth: true,
+      beforeShowDay: unavailable,
+      numberOfMonths: 1,
+      dateFormat: 'yy-mm-dd',
+      onClose: function( selectedDate ) {
+        $( "#start_date" ).datepicker( "option", "maxDate", selectedDate );
+        }
       });
-
+    });
   }
 
-  
+
+
+
+
 })

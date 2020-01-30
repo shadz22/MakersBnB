@@ -48,9 +48,14 @@ class BnbApp < Sinatra::Base
 
   post '/bookings' do
     booking = Booking.create(user_id: params[:user_id], listing_id: params[:listing_id], start_date: params[:start_date], end_date: params[:end_date])
-    p booking
-    p params
     redirect '/'
+  end
+
+  get '/bookings/dates' do
+    bookings = Booking.listings(params['id'])
+    return bookings
+    # p bookings.to_json
+
   end
 
   run! if app_file == $0

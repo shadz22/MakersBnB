@@ -24,7 +24,7 @@ class Booking
     query = "SELECT * FROM bookings WHERE listing_id = '#{listing_id}'"
     result = DatabaseConnection.query(query)
     array = result.map { |booking| DateHandler.convert(booking['start_date'], booking['end_date']) }
-    p array.flatten
+    array.flatten
   end
 
   def self.create(user_id:, listing_id:, start_date:, end_date:)
