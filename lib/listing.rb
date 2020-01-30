@@ -3,7 +3,7 @@ require './lib/database_connection'
 
 class Listing
 
-  attr_reader :id, :name, :description, :price, :owner_id, :start_date, :end_date
+  attr_accessor :id, :name, :description, :price, :owner_id, :start_date, :end_date, :listing_details
 
   def initialize(database_row)
     @id = database_row['id']
@@ -13,6 +13,7 @@ class Listing
     @owner_id = database_row['owner_id']
     @start_date = database_row["start_date"]
     @end_date = database_row["end_date"]
+    @listing_details = {:id => database_row['id'], :name => database_row['name'], :price => database_row['price']}
   end
 
   def self.all

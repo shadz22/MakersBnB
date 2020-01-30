@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  // var user = new User();
 
   $("#homepage-sign-up-btn").on("click", function() {
    signUpForm()
