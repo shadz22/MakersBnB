@@ -28,6 +28,8 @@ $(document).ready(function(){
     })
   });
 
+  
+
   $('#show-listings').on('click', '#listing-links', function() {
     $('#listing-details').empty().append(listings[$(this).val()].price)
   })
