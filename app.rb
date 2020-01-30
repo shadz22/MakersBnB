@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require './lib/user'
 require './lib/listing'
+require './lib/booking'
 require './database_connection_setup'
 require 'json'
 
@@ -43,7 +44,13 @@ class BnbApp < Sinatra::Base
 
   get '/users' do
     @name = session[:name]
+  end
 
+  post '/bookings' do
+    booking = Booking.create(user_id: params[:user_id], listing_id: params[:listing_id], start_date: params[:start_date], end_date: params[:end_date])
+    p booking
+    p params
+    redirect '/'
   end
 
   run! if app_file == $0
