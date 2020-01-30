@@ -9,22 +9,19 @@
   <div id="header"></div>
   <input type=submit id="homepage-sign-up-btn" value='Sign Up'>
   <input type=submit id="homepage-create-listing-btn" value='Create Listing'>
+  <input type=submit id="show-listings-btn" value='Show Listings'>
 
-    <div id="sign-up-form"></div>
+  <div id="sign-up-form"></div>
     <div id="create-listing-form"></div>
-    <div id="show-listings">
-      <% @listings.each do |listing| %>
-        <input type='submit' value='<%= listing.name %>' class='listing-btn' id='<%= listing.id %>'>
-      <% end %>
-    </div>
+    <div id="show-listings"></div>
 
-    <div id='listing-details'><%= @current_listing.price %></div>
+    <div id="listing-details"></div>
 
 
   
-  <script src="UserInterface.js"></script>
-  <script src="BookingInterface.js"></script>
-  <script src="ListingInterface.js"></script>
+    <script src="UserInterface.js"></script>
+    <script src="BookingInterface.js"></script>
+    <script src="ListingInterface.js"></script>
   </body>
 </html>
 

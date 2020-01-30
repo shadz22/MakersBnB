@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var currentListing;
+  var listings;
 
   $("#homepage-create-listing-btn").on("click", function() {
     createListingForm()
@@ -18,22 +19,27 @@ $(document).ready(function(){
      )
    }
 
-   
-   $('.listing-btn').on('click', function() {
-      $.ajax({    //create an ajax request to display.php
-        type: "GET",
-        url: `/listings/${this.id}`,             
-        dataType: "json",   //expect html to be returned                
-        success: function(response){                    
-            // $("#responsecontainer").html(response); 
-            // alert(response);
-            console.log(response)
-        }
-      });
-   })
 
 
-   
-  
+  $('#show-listings-btn').one('click', function() {
+    $.get('/listings', function(data) {
+      listings = JSON.parse(data)
+      showListings(listings)
+    })
+  });
+
+  $('#show-listings').on('click', '#listing-links', function() {
+    $('#listing-details').empty().append(listings[$(this).val()].price)
+  })
+
+  function showListings(listings) {
+    for (var key in listings) {    
+      const listingLink = document.createElement('BUTTON');
+      listingLink.innerHTML = listings[key].name
+      listingLink.id = 'listing-links'
+      listingLink.value = listings[key].id
+      $('#show-listings').append(listingLink)
+    }
+  }
 
 })

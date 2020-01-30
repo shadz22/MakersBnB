@@ -2,6 +2,7 @@ require 'sinatra/base'
 require './lib/user'
 require './lib/listing'
 require './database_connection_setup'
+require 'json'
 
 class BnbApp < Sinatra::Base
 
@@ -18,19 +19,14 @@ class BnbApp < Sinatra::Base
 
   get '/listings' do
     @listings = Listing.all
-    # erb :'listings/index'
-  end
-
-  get '/listings/:id' do
-    @listings = Listing.all
-    @listings.each { |listing| session[:listing] = listing if listing.id === params[:id] }
-    redirect '/'
+    @show_listing = {}
+    @listings.each { |listing| @show_listing[listing.id] = listing.listing_details}
+    @show_listing.to_json
   end
 
   get '/' do
     # erb :index
     @listings = Listing.all
-    @current_listing = session[:listing]
     erb :user_index
   end
 
