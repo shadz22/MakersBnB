@@ -18,6 +18,8 @@ class Booking
   end
 
   def self.create(user_id:, listing_id:, start_date:, end_date:)
+   p user_id = user_id.to_i
+    p listing_id = listing_id.to_i
     DatabaseConnection.query("INSERT INTO bookings (user_id, listing_id, start_date, end_date) VALUES ('#{user_id}', '#{listing_id}', '#{start_date}', '#{end_date}') RETURNING id, user_id, listing_id, start_date, end_date, confirmed")
   end
 end
