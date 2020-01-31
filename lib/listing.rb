@@ -13,7 +13,15 @@ class Listing
     @owner_id = database_row['owner_id']
     @start_date = database_row["start_date"]
     @end_date = database_row["end_date"]
-    @listing_details = {:id => database_row['id'], :name => database_row['name'], :price => database_row['price']}
+    @listing_details = {
+      :id => database_row['id'], 
+      :name => database_row['name'], 
+      :description => database_row['description'],
+      :price => database_row['price'],
+      :owner_id => database_row['owner_id'],
+      :start_date => database_row["start_date"],
+      :end_date => database_row["end_date"],
+    }
   end
 
   def self.all
