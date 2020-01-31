@@ -1,7 +1,6 @@
 $(document).ready(function(){
   var listings;
   var user_id;
-  var currentListing;
   var allListings;
   /// check if user has signed in
   checkUser()
@@ -109,6 +108,7 @@ $(document).ready(function(){
     $('#log-in-form').show()
     $("#homepage-log-in-btn").hide()
     $("#back-btn").show()
+    $("#bookings").hide()
    })
 
    function signUpForm() {

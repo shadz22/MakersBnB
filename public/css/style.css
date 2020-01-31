@@ -27,16 +27,12 @@ body{
   transition-duration: 0.4s;
 }
 
-[type=submit]:hover {
-  background-color: #851c18a4;
-  color: white;
-}
 
 button {
   background-color: #851c18;
   border: none;
   color: white;
-  padding: 15px 15px;
+  padding: 30px 30px;
   margin: 15px 2px;
   transition-duration: 0.4s;
 }
