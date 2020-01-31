@@ -1,5 +1,8 @@
 $(document).ready(function(){
   var listings;
+  var user_id;
+  var currentListing;
+  var allListings;
   /// check if user has signed in
   checkUser()
 
@@ -7,7 +10,9 @@ $(document).ready(function(){
    $.get('/listings', function(data) {
     listings = JSON.parse(data)
     showListings(listings)
+    getCurrentListing(listings)
   })
+  
 
   /// hide/show buttons on page load
   $('#homepage-create-listing-btn').hide()
@@ -21,6 +26,7 @@ $(document).ready(function(){
     $('#sign-up-form').hide()
     $('#create-listing-form').hide()
     $("#back-btn").hide()
+    $('#booking').hide()
    })
 
   /// CREATE LISTING
@@ -57,23 +63,28 @@ $(document).ready(function(){
       listingLink.innerHTML = listings[key].name
       listingLink.id = 'listing-links'
       listingLink.value = listings[key].id
+      currentListing = listings[key]
       $('#show-listings').append(listingLink)
     }
   }
 
   function showListingDetails(listing_id) {
-   $('#listing-details').empty().append(
-     `Name: ${listings[listing_id].name}<br>
-     price: ${listings[listing_id].price}<br>
-     Description: ${listings[listing_id].description}<br>
-     Start Date: ${listings[listing_id].start_date}<br>
-     End Date: ${listings[listing_id].end_date}`
-     )
-   $('#homepage-sign-up-btn').hide()
-   $('#show-listings').hide()
-   $('#listing-details').show()
-   $("#homepage-create-listing-btn").hide()
-   $("#back-btn").show()
+    $('#listing-details').hide()
+    
+    $('#listing-details').empty().append(
+      `Name: ${listings[listing_id].name}<br>
+      price: ${listings[listing_id].price}<br>
+      Description: ${listings[listing_id].description}<br>
+      Start Date: ${listings[listing_id].start_date}<br>
+      End Date: ${listings[listing_id].end_date}`
+      )
+
+    $('#listing-details').show('puff')
+    $('#homepage-create-booking-btn').show()
+    $('#back-btn').show()
+    $('#booking').show()
+    currentListing = listings[listing_id].id
+    createBooking(listings[listing_id].id)
   }
 
   /// USER SIGN UP
@@ -84,6 +95,7 @@ $(document).ready(function(){
     $('#listing-details').hide()
     $('#sign-up-form').show()
     $("#back-btn").show()
+    $("#booking").hide()
    })
    
    function signUpForm() {
@@ -101,16 +113,86 @@ $(document).ready(function(){
   function checkUser() {
     $.get('/users', function(data) {
       if (data != "") {
+        user_id = data
         $('#homepage-sign-up-btn').hide()
         $('#homepage-create-listing-btn').show()
       } else {
+        user_id = 1
         $('#homepage-sign-up-btn').show()
         $('#homepage-create-listing-btn').hide()
       }
-
-
     })
   }
+
  
+  //// BOOKINGS
+
+  function getCurrentListing(listings) {
+    allListings = listings
+  }
+
+  function todaysDate() {
+    var today = new Date()
+    var yyyy = today.getFullYear()
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var dd = String(today.getDate() + 1).padStart(2, '0');
+    today = yyyy + "-" + mm + "-" + dd
+    return today
+  }
+
+  function createBooking(id){
+    $('#booking').html(
+      '<form action="../bookings" method="post">\
+      <label for="from">Check In</label>\
+      <input type="text" id="start_date" name="start_date">\
+      <label for="to">Check Out</label>\
+      <input type="text" id="end_date" name="end_date">\
+      <input type="hidden" name="user_id" value='+ user_id +'> \
+      <input type="hidden" name="listing_id" value=' + allListings[id].id + '>\
+      <input type=submit id="dates" value="Book Now >"></form>'
+    
+    )
+    $.get(`/bookings/dates/${allListings[id].id}`, function(data) {
+      var dates = (data.match(/.{10}/g));
+      var unavailableDates = dates
+      function unavailable(date) {
+        ymd = date.getFullYear() + "-" + ((date.getMonth()) < 9 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)) + "-" + ( date.getDate() < 10 ? ("0" + date.getDate()) : (date.getDate()) );
+          if (jQuery.inArray(ymd, unavailableDates) == -1) {
+              return [true, ""];
+          } else {
+              return [false, "", "Unavailable"];
+          }
+      }
+      
+  $(function() {
+
+    $( "#start_date" ).datepicker({
+      minDate: allListings[id].start_date, 
+      maxDate: allListings[id].end_date,
+      defaultDate: "+1w",
+      changeMonth: true,
+      beforeShowDay: unavailable,
+      numberOfMonths: 1,
+      dateFormat: 'yy-mm-dd',
+      onClose: function( selectedDate ) {
+        $( "#end_date" ).datepicker( "option", "minDate", selectedDate );
+        }
+    });
+
+    $( "#end_date" ).datepicker({
+      minDate: allListings[id].start_date, 
+      maxDate: allListings[id].end_date,
+      defaultDate: "+1w",
+      changeMonth: true,
+      beforeShowDay: unavailable,
+      numberOfMonths: 1,
+      dateFormat: 'yy-mm-dd',
+      onClose: function( selectedDate ) {
+        $( "#start_date" ).datepicker( "option", "maxDate", selectedDate );
+        }
+      });
+    });
+  })
+  }
 
 })

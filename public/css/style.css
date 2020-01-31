@@ -1,0 +1,55 @@
+@import url(https://fonts.googleapis.com/css?family=Uncial Antiqua);
+
+html, body{
+  height: 100%;
+  font-weight: 800;
+  background-color: red;
+  background-image: url("../images/enternace.jpg")
+}
+
+body{
+  font-family: 'Uncial Antiqua';
+  text-align: center;
+  color: black;
+}
+
+#header {
+  font-size: 50px;
+  color: white
+}
+
+[type=submit] {
+  background-color: #851c18;
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  margin: 15px 2px;
+  transition-duration: 0.4s;
+}
+
+[type=submit]:hover {
+  background-color: #851c18a4;
+  color: white;
+}
+
+button {
+  background-color: #851c18;
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  margin: 15px 2px;
+  transition-duration: 0.4s;
+}
+
+#listing-details {
+  background-color: rgba(255, 255, 255, 0.609);
+  width: 50%;
+  margin: auto;
+}
+
+table {
+  background-color: white
+}
+.ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all {
+  background-color: white
+}
