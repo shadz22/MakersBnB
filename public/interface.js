@@ -24,6 +24,7 @@ $(document).ready(function(){
     $('#show-listings').show()
     $('#listing-details').hide()
     $('#sign-up-form').hide()
+    $('#log-in-form').hide()
     $('#create-listing-form').hide()
     $("#back-btn").hide()
     $('#booking').hide()
@@ -95,9 +96,21 @@ $(document).ready(function(){
     $('#listing-details').hide()
     $('#sign-up-form').show()
     $("#back-btn").show()
+    $("#homepage-log-in-btn").hide()
     $("#booking").hide()
    })
-   
+
+   ///USER LOG IN
+   $("#homepage-log-in-btn").on("click", function() {
+    logInForm()
+    $('#show-listings').hide()
+    $('#homepage-sign-up-btn').hide()
+    $('#listing-details').hide()
+    $('#log-in-form').show()
+    $("#homepage-log-in-btn").hide()
+    $("#back-btn").show()
+   })
+
    function signUpForm() {
      $("#sign-up-form").html(
        "<form id='sign-up' action='../users' method='post'>\
@@ -109,16 +122,29 @@ $(document).ready(function(){
      )
    }
 
+
+   function logInForm() {
+    $("#log-in-form").html(
+      "<form id='log-in' action='../sessions' method='post'>\
+      Email: <input type=text id='email' name='email'><br>\
+      Password: <input type=text id='password' name='password'><br>\
+     <input type=submit id='log-in-btn' value='Log in'/>\
+     </form>"
+    )
+  }
+
    /// check user function
   function checkUser() {
     $.get('/users', function(data) {
       if (data != "") {
         user_id = data
         $('#homepage-sign-up-btn').hide()
+        $('#homepage-log-in-btn').hide()
         $('#homepage-create-listing-btn').show()
       } else {
         user_id = 1
         $('#homepage-sign-up-btn').show()
+        $('#homepage-log-in-btn').show()
         $('#homepage-create-listing-btn').hide()
       }
     })
