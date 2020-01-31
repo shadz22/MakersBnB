@@ -44,6 +44,7 @@ $(document).ready(function(){
     }
   }
 
+
   function showListingDetails(listing_id) {
    $('#listing-details').empty().append(
      `Name: ${listings[listing_id].name}<br>
