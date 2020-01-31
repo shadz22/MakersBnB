@@ -6,6 +6,24 @@ $(document).ready(function(){
     createListingForm()
    })
 
+   $.get('/listings', function(data) {
+    listings = JSON.parse(data)
+    showListings(listings)
+  })
+
+  $('#homepage-create-listing-btn').hide()
+  $('#create-booking-btn').hide()
+  $('#view-booking-btn').hide()
+  $("#back-btn").on("click", function() {
+    $('#show-listings').show()
+    $('#homepage-sign-up-btn').show()
+    $('#listing-details').hide()
+   })
+  
+  //  function backButton() {
+
+  //  }
+
    function createListingForm() {
      $("#create-listing-form").html(
       '<form action="/listings" method="post">\
@@ -21,12 +39,16 @@ $(document).ready(function(){
 
 
 
-  $('#show-listings-btn').one('click', function() {
-    $.get('/listings', function(data) {
-      listings = JSON.parse(data)
-      showListings(listings)
-    })
-  });
+
+
+  // $('#show-listings-btn').one('click', function() {
+  //   $.get('/listings', function(data) {
+  //     listings = JSON.parse(data)
+  //     showListings(listings)
+  //   })
+  // });
+
+
 
   
 
@@ -53,6 +75,10 @@ $(document).ready(function(){
      Start Date: ${listings[listing_id].start_date}<br>
      End Date: ${listings[listing_id].end_date}`
      )
+   $('#homepage-sign-up-btn').hide()
+   $('#show-listings').hide()
+   $('#listing-details').show()
   }
+
 
 })

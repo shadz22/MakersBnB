@@ -10,7 +10,6 @@ class BnbApp < Sinatra::Base
   enable :sessions
   
   get '/listings/new' do
-    # erb :'listings/new'
   end
 
   post '/listings' do
@@ -26,13 +25,11 @@ class BnbApp < Sinatra::Base
   end
 
   get '/' do
-    # erb :index
     @listings = Listing.all
-    erb :booking_index
+    erb :bnb_index
   end
 
   get '/users/new' do
-    # erb :'users/new'
   end
 
   post '/users' do
