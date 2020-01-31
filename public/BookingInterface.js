@@ -7,15 +7,12 @@ $(document).ready(function() {
     createBooking()
   })
 
+  // $('#view-booking-btn').on('click', function() {
+  //   $.get(`/bookings/dates/${listing.id}`, function(data) {
+  //     console.log(data)
+  //   })
+  // });
 
-  $('#view-booking-btn').on('click', function() {
-    
-    query = `id=${listing.id}`
-    console.log(query)
-    $.get(`/bookings/dates`, query, function(data) {
-      console.log(data)
-    })
-  });
 
   function displayListing() {
   $("#create-listing-display").html(

@@ -51,11 +51,10 @@ class BnbApp < Sinatra::Base
     redirect '/'
   end
 
-  get '/bookings/dates' do
-    bookings = Booking.listings(params['id'])
-    return bookings
-    # p bookings.to_json
-
+  get '/bookings/dates/:id' do
+    p params
+    # bookings = Booking.listings(params['id'])
+    'test'
   end
 
   run! if app_file == $0
