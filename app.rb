@@ -52,6 +52,21 @@ class BnbApp < Sinatra::Base
     bookings = Booking.listings(listing_id: params['id'])
   end
 
+
+  post '/sessions' do
+    user = User.authenticate(email: params[:email], password: params[:password])
+    if user
+      session[:name] = user.name
+      session[:owner_id] = user.id
+      redirect('/')
+    else
+      session[:name] = ""
+      session[:owner_id] = ""
+      redirect('/')
+    end
+    
+  end
+
   run! if app_file == $0
 end
 
