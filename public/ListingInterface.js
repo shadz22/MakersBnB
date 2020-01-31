@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 
 
-  $('#show-listings-btn').on('click', function() {
+  $('#show-listings-btn').one('click', function() {
     $.get('/listings', function(data) {
       listings = JSON.parse(data)
       showListings(listings)
