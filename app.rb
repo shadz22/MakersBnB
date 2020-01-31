@@ -52,9 +52,7 @@ class BnbApp < Sinatra::Base
   end
 
   get '/bookings/dates/:id' do
-    p params
-    # bookings = Booking.listings(params['id'])
-    'test'
+    bookings = Booking.listings(listing_id: params['id'])
   end
 
   run! if app_file == $0

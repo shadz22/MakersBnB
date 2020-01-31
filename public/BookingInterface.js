@@ -9,7 +9,9 @@ $(document).ready(function() {
 
   // $('#view-booking-btn').on('click', function() {
   //   $.get(`/bookings/dates/${listing.id}`, function(data) {
-  //     console.log(data)
+  //     var dates = (data.match(/.{10}/g));
+  //      var unavailableDates = [dates]
+      
   //   })
   // });
 
@@ -33,10 +35,13 @@ $(document).ready(function() {
       <input type="hidden" name="user_id" value='+ user.id +'> \
       <input type="hidden" name="listing_id" value=' + listing.id+ '>\
       <input type=submit id="dates" value="Create Dates"></form>'
+      
     )
-      var unavailableDates = ["2020-2-1", "2020-2-2", "2020-2-3", "2020-2-4", "2020-2-5"]
+    $.get(`/bookings/dates/${listing.id}`, function(data) {
+      var dates = (data.match(/.{10}/g));
+      var unavailableDates = dates
       function unavailable(date) {
-        ymd = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        ymd = date.getFullYear() + "-" + ((date.getMonth()) < 9 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)) + "-" + ( date.getDate() < 10 ? ("0" + date.getDate()) : (date.getDate()) );
           if (jQuery.inArray(ymd, unavailableDates) == -1) {
               return [true, ""];
           } else {
@@ -48,7 +53,7 @@ $(document).ready(function() {
 
     $( "#start_date" ).datepicker({
       minDate: "2020-01-05", 
-      maxDate: "2020-04-05",
+      maxDate: "2020-09-30",
       defaultDate: "+1w",
       changeMonth: true,
       beforeShowDay: unavailable,
@@ -61,7 +66,7 @@ $(document).ready(function() {
 
     $( "#end_date" ).datepicker({
       minDate: "2020-01-05", 
-      maxDate: "2020-04-05",
+      maxDate: "2020-09-30",
       defaultDate: "+1w",
       changeMonth: true,
       beforeShowDay: unavailable,
@@ -72,6 +77,7 @@ $(document).ready(function() {
         }
       });
     });
+  })
   }
 
 
