@@ -95,6 +95,7 @@ $(document).ready(function(){
     $('#listing-details').hide()
     $('#sign-up-form').show()
     $("#back-btn").show()
+    $("#booking").hide()
    })
    
    function signUpForm() {
