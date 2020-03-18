@@ -1,0 +1,5 @@
+package-lock.json
+Gemfile.lock
+.rspec
+node-modules
+.vscode
